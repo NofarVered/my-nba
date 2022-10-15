@@ -26,7 +26,7 @@
             class="form-control"
             placeholder="Enter a year"
         />
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-left: 20px; margin-right: 20px;">
             <button id="getTeam-btn" class="btn btn-primary me-md-2" type="button">Get a team</button>
             <button id="birthday-filter-btn" class="btn btn-primary" type="button">Filter by birthday</button>
         </div>
@@ -36,9 +36,73 @@
         <label class="form-check-label" for="flexSwitchCheckChecked">Actives players</label>
     </div>
               
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <div class="players">
+        <script id="players-template" type="text/x-handlebars-template">
+            <button
+                class="btn btn-secondary col bi bi-arrow-left-square btn-left"
+            ></button>
+            {{#each playersArr}}
+                <div class="col card player-card" style="width: 18rem;" data-teamID={{this.teamId}} data-isActive="{{this.teamId}}" data-birth={{this.birth}}>
+                    <img
+                        src="https://nba-players.herokuapp.com/players/{{this.lastName}}/{{this.firstName}}"
+                        class="card-img-top"
+                        onerror="this.src='./fronted/images/nba.jpg'"
+                        alt="player-picture"
+                    />
+                    <div class="card-body">
+                        <h5
+                            class="player-first-name card-title"
+                        >{{this.firstName}}</h5>
+                        <h5
+                        class="player-last-name card-title"
+                    >{{this.lastName}}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="pos list-group-item">{{this.pos}}</li>
+                        <li class="jersey list-group-item">
+                            {{this.jersey}}</li>
+                    </ul>
+                    <button type="button" class="add-player btn btn-secondary">Add to
+                        dream team</button>
+                </div>
+            {{/each}}
+            <button
+                class="btn btn-secondary col bi bi-arrow-right-square btn-right"
+            ></button>
+        </script>
+    </div>
+    <div class="dreamTeam">
+        <script id="dreamTeam-template" type="text/x-handlebars-template">
+            {{#each dreamTeamArr}}
+                <div class="col-1 card" style="width: 18rem;">
+                    <button type="button" class="delete-player btn btn-danger"><i class="bi bi-trash"></i></button>
+                    <img
+                        src="https://nba-players.herokuapp.com/players/{{this.lastName}}/{{this.firstName}}"
+                        class="card-img-top"
+                        onerror="this.src='./fronted/images/nba.jpg'"
+                        alt="player-picture"
+                    />
+                    <div class="card-body">
+                        <h5
+                            class="player-first-name card-title"
+                        >{{this.firstName}}</h5>
+                        <h5
+                        class="player-last-name card-title"
+                    >{{this.lastName}}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Postion:
+                            {{this.pos}}</li>
+                        <li class="list-group-item">Jersey Number:
+                            {{this.jersey}}</li>
+                    </ul>
+                </div>
+            {{/each}}
+        </script>
+        <div class="dreamTeam-container row"></div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
