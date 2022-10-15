@@ -3,8 +3,8 @@ from typing import Union
 
 
 class Statistics(BaseModel):
+    rating: Union[str, None] = None
     minutes_per_game: Union[str, None] = None
-    field_goal_percentage: Union[str, None] = None
-    free_throw_percentage: Union[str, None] = None
-    three_point_percentage: Union[str, None] = None
-    player_efficiency_rating: Union[str, None] = None
+    field_shots: Union[str, None] = None
+    free_shots: Union[str, None] = None
+    three_point_shots: Union[str, None] = None
