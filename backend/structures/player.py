@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Union
+from statistics import Statistics
 
 
 class Player(BaseModel):
@@ -10,4 +11,4 @@ class Player(BaseModel):
     positon: Union[str, None] = None
     img: Union[str, None] = None
     isActive: bool = False
-    isDreamTeam: bool = False
+    statistics: Union[Statistics, None] = None
