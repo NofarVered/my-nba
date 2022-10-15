@@ -36,72 +36,53 @@
         <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
         <label class="form-check-label" for="flexSwitchCheckChecked">Actives players</label>
     </div>
-              
-    <div class="players">
-        <script id="players-template" type="text/x-handlebars-template">
-            <button
-                class="btn btn-secondary col bi bi-arrow-left-square btn-left"
-            ></button>
-            {{#each playersArr}}
-                <div class="col card player-card" style="width: 18rem;" data-teamID={{this.teamId}} data-isActive="{{this.teamId}}" data-birth={{this.birth}}>
-                    <img
-                        src="https://nba-players.herokuapp.com/players/{{this.lastName}}/{{this.firstName}}"
-                        class="card-img-top"
-                        onerror="this.src='./fronted/images/nba.jpg'"
-                        alt="player-picture"
-                    />
-                    <div class="card-body">
-                        <h5
-                            class="player-first-name card-title"
-                        >{{this.firstName}}</h5>
-                        <h5
-                        class="player-last-name card-title"
-                    >{{this.lastName}}</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="pos list-group-item">{{this.pos}}</li>
-                        <li class="jersey list-group-item">
-                            {{this.jersey}}</li>
-                    </ul>
-                    <button type="button" class="add-player btn btn-secondary">Add to
-                        dream team</button>
-                </div>
-            {{/each}}
-            <button
-                class="btn btn-secondary col bi bi-arrow-right-square btn-right"
-            ></button>
-        </script>
+    
+    <div id="players-container"> 
     </div>
-    <div class="dreamTeam">
-        <script id="dreamTeam-template" type="text/x-handlebars-template">
-            {{#each dreamTeamArr}}
-                <div class="col-1 card" style="width: 18rem;">
-                    <button type="button" class="delete-player btn btn-danger"><i class="bi bi-trash"></i></button>
-                    <img
-                        src="https://nba-players.herokuapp.com/players/{{this.lastName}}/{{this.firstName}}"
-                        class="card-img-top"
-                        onerror="this.src='./fronted/images/nba.jpg'"
-                        alt="player-picture"
-                    />
-                    <div class="card-body">
-                        <h5
-                            class="player-first-name card-title"
-                        >{{this.firstName}}</h5>
-                        <h5
-                        class="player-last-name card-title"
-                    >{{this.lastName}}</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Postion:
-                            {{this.pos}}</li>
-                        <li class="list-group-item">Jersey Number:
-                            {{this.jersey}}</li>
-                    </ul>
+
+    <!-- ================================== TEMPLATES SCRIPTS ================================== -->
+    <script id="players-template" type="text/x-handlebars-template">
+        {{#each playersArr}}
+            <div class="col card player-card" style="width: 18rem;" data-teamID={{this.teamId}} data-isActive="{{this.teamId}}" data-birth={{this.birth}}>
+                <img
+                    src="https://nba-players.herokuapp.com/players/{{this.lastName}}/{{this.firstName}}"
+                    class="card-img-top"
+                    alt="player-picture"
+                />
+                <div class="card-body">
+                    <h5 class="player-first-name card-title">{{this.firstName}}</h5>
+                    <h5 class="player-last-name card-title">{{this.lastName}}</h5>
                 </div>
-            {{/each}}
-        </script>
-        <div class="dreamTeam-container row"></div>
-    </div>
+                <ul class="list-group list-group-flush">
+                    <li class="pos list-group-item">{{this.pos}}</li>
+                    <li class="jersey list-group-item">{{this.jersey}}</li>
+                </ul>
+                <button type="button" class="add-player btn btn-secondary">Add to dream team</button>
+            </div>
+        {{/each}}
+    </script>
+
+    <script id="dreamTeam-template" type="text/x-handlebars-template">
+        {{#each dreamTeamArr}}
+            <div class="col-1 card" style="width: 18rem;">
+                <button type="button" class="delete-player btn btn-danger"><i class="bi bi-trash"></i></button>
+                <img
+                    src="https://nba-players.herokuapp.com/players/{{this.lastName}}/{{this.firstName}}"
+                    class="card-img-top"
+                    onerror="this.src='./fronted/images/nba.jpg'"
+                    alt="player-picture"
+                />
+                <div class="card-body">
+                    <h5 class="player-first-name card-title">{{this.firstName}}</h5>
+                    <h5 class="player-last-name card-title">{{this.lastName}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Postion: {{this.pos}}</li>
+                    <li class="list-group-item">Jersey Number: {{this.jersey}}</li>
+                </ul>
+                </div>
+        {{/each}}
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>

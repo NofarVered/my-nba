@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from utils import data_nba_api
+from routers import data_nba_api
 import uvicorn
 
 app = FastAPI()
