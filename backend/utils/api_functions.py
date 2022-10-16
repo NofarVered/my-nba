@@ -7,11 +7,11 @@ class ApiFunctions:
 
     @staticmethod
     def filter_by_team(players_response, teamName, isActive):
+        print(isActive == False)
         result = [Player(**curr_player, img=url_const['IMG_URL'] % (
             curr_player["lastName"], curr_player["firstName"])) for curr_player in players_response if curr_player["teamId"] == teams_id[teamName]]
         if (isActive):
-            result = [
-                curr_player for curr_player in result if curr_player["isActive"] == True]
+            result = [p for p in result if p.isActive]
         return result
 
     @staticmethod
