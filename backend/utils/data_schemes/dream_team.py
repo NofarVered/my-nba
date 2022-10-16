@@ -15,8 +15,6 @@ class DreamTeam():
     def remove_player(self, personId: str):
         self.team = list(
             filter(lambda player: player.personId != personId, self.team))
-        return {"message": "player removed from the team!"}
 
     def add_player(self, player: Player):
         self.team.append(Player(player))
-        return {"message": "player added to the team!"}
