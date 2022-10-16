@@ -9,15 +9,14 @@ from utils.api_functions import ApiFunctions
 
 app = FastAPI()
 
-app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
 
-
-@app.get("/")
+@app.get("/sanity")
 def root():
-    return {"message": "Server is up and running"}
+    return {"message": "Server is running"}
 
 
-@app.get("/players")
+# localhost:8000/search?teamName=warriors&year=2018&isActive=true
+@app.get("/search")
 async def get_players(teamName: str = "", year: str = "", isActive: bool = False):
     try:
         players_response = requests.get(
@@ -46,5 +45,7 @@ def get_player_stats(first_name: str = "", last_name: str = ""):
         )
 
 
+app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=True)
