@@ -1,3 +1,4 @@
+import json
 from pydantic import BaseModel
 from typing import *
 
@@ -11,8 +12,12 @@ class DreamTeam():
     def get_dream_team(self):
         return self.team
 
-    def remove_player(self, player_id: str):
-        return {"message": "player {player_id} removed from the team!"}
+    def remove_player(self, personId: str):
+        self.team = list(
+            filter(lambda player: player.personId != personId, self.team))
+        return {"message": "player removed from the team!"}
 
-    def add_player(self, player_id: str):
-        return {"message": "player {player_id} added to the team!"}
+# TO DO!
+    def add_player(self, player: json):
+        self.team.append(Player(player))
+        return {"message": "player added to the team!"}
