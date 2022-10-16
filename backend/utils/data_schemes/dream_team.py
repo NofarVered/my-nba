@@ -7,7 +7,7 @@ from player import Player
 
 class DreamTeam():
     def __init__(self):
-        self.team = Union[list[Player], None] = None
+        self.team = []
 
     def get_dream_team(self):
         return self.team
@@ -17,7 +17,6 @@ class DreamTeam():
             filter(lambda player: player.personId != personId, self.team))
         return {"message": "player removed from the team!"}
 
-# TO DO!
-    def add_player(self, player: json):
+    def add_player(self, player: Player):
         self.team.append(Player(player))
         return {"message": "player added to the team!"}

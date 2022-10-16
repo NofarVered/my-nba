@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
@@ -6,6 +6,10 @@ from fastapi import HTTPException, status
 import requests
 from utils.url import url_const
 from utils.api_functions import ApiFunctions
+from utils.data_schemes.dream_team import DreamTeam
+from utils.data_schemes.player import Player
+
+dreamTeam = DreamTeam()
 
 app = FastAPI()
 
@@ -44,25 +48,23 @@ def get_player_stats(firstName: str = "", lastName: str = ""):
             detail="Invalid player name or last name"
         )
 
-# @app.get("/dreamTeam")
-# def getDreamTeam():
-#     return dreamTeam
+
+@app.get("/dream")
+def get_dream_team():
+    return dreamTeam
 
 
-# @app.post("/dreamTeam")
-# async def add_player_to_dream_team(playerRequest: Request, response: Response) -> None:
-#     player = await playerRequest.json()
-#     if (player in dreamTeam.players):
-#         raise HTTPException(
-#             status_code=500, detail="Player already exisit in dream-team!")
-#     player['isInDreamTeam'] = True
-#     dreamTeam.add_player(player)
-#     response.status_code = status.HTTP_201_CREATED
-#     return player
+@app.post("/dream")
+async def add_to_dream_team(request: Request, response: Response):
+    req = await request.json()
+    player = Player(**req)
+    dreamTeam.add_player(player)
+    response.status_code = status.HTTP_201_CREATED
+    return {"player": player}
 
 
-# @app.delete("/dreamTeam")
-# def delete_player_from_dream_team(playerId: str, response: Response) -> None:
+# @app.delete("/dream")
+# def delete_dream_team(playerId: str, response: Response) -> None:
 #     playerToDelete = None
 #     for player in dreamTeam.players:
 #         if player.get('personId') == playerId:
