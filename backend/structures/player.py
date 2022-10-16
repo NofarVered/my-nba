@@ -4,11 +4,11 @@ from statistics import Statistics
 
 
 class Player(BaseModel):
-    playerId: Union[str, None] = None
-    fName: Union[str, None] = None
-    lName: Union[str, None] = None
+    firstName: Union[str, None] = None
+    lastName: Union[str, None] = None
+    personId: Union[str, None] = None
+    teamId: Union[str, None] = None
     jersey: Union[str, None] = None
-    positon: Union[str, None] = None
+    pos: Union[str, None] = None
+    isActive: bool
     img: Union[str, None] = None
-    isActive: bool = False
-    statistics: Union[Statistics, None] = None
