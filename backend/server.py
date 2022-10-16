@@ -15,7 +15,6 @@ def root():
     return {"message": "Server is running"}
 
 
-# localhost:8000/search?teamName=warriors&year=2018&isActive=true
 @app.get("/search")
 async def get_players(teamName: str = "", year: str = "", isActive: bool = False):
     try:
@@ -31,8 +30,7 @@ async def get_players(teamName: str = "", year: str = "", isActive: bool = False
         )
 
 
-# localhost:8000/stats?lastName=james&firstName=lebron
-@app.get("/stats")
+@app.get("/search")
 def get_player_stats(firstName: str = "", lastName: str = ""):
     try:
         stats_response = requests.get(url_const['PLAYER_STATS'] %
@@ -46,6 +44,37 @@ def get_player_stats(firstName: str = "", lastName: str = ""):
             detail="Invalid player name or last name"
         )
 
+# @app.get("/dreamTeam")
+# def getDreamTeam():
+#     return dreamTeam
+
+
+# @app.post("/dreamTeam")
+# async def add_player_to_dream_team(playerRequest: Request, response: Response) -> None:
+#     player = await playerRequest.json()
+#     if (player in dreamTeam.players):
+#         raise HTTPException(
+#             status_code=500, detail="Player already exisit in dream-team!")
+#     player['isInDreamTeam'] = True
+#     dreamTeam.add_player(player)
+#     response.status_code = status.HTTP_201_CREATED
+#     return player
+
+
+# @app.delete("/dreamTeam")
+# def delete_player_from_dream_team(playerId: str, response: Response) -> None:
+#     playerToDelete = None
+#     for player in dreamTeam.players:
+#         if player.get('personId') == playerId:
+#             playerToDelete = player
+#             break
+#     if playerToDelete is None:
+#         raise HTTPException(
+#             status_code=500, detail="Player not found in dream-team!")
+#     indexToDelete = dreamTeam.players.index(player)
+#     dreamTeam.players.pop(indexToDelete)
+#     response.status_code = status.HTTP_204_NO_CONTENT
+#     return
 
 app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
 
