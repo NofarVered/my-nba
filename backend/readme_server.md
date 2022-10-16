@@ -10,6 +10,7 @@
     - `teamName`
     - `year`
     - `isActive`
+  - Response:
 
 - `stats`
 
@@ -18,3 +19,4 @@
   - Parameters:
     - `lastName`
     - `firstName`
+  - Response:
