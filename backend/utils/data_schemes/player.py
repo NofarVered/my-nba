@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import Union
-from statistics import Statistics
 
 
 class Player(BaseModel):
