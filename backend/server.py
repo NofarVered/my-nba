@@ -30,7 +30,7 @@ async def get_players(teamName: str = "", year: str = "", isActive: bool = False
         )
 
 
-@app.get("/search")
+@app.get("/stats")
 def get_player_stats(firstName: str = "", lastName: str = ""):
     try:
         stats_response = requests.get(url_const['PLAYER_STATS'] %
