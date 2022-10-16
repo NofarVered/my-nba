@@ -1,5 +1,5 @@
-from ...structures.teams_id import teams_id
-from ...structures.player import Player
+from ...data_schemes.teams_id import teams_id
+from ...data_schemes.player import Player
 from .url import *
 
 
