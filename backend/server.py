@@ -23,7 +23,7 @@ async def get_players(teamName: str = "", year: str = "", isActive: bool = False
             url_const['BY_YEAR_PLAYERS'] % (year)).json()["league"]["standard"]
         filtered_players = ApiFunctions.filter_by_team(
             players_response, teamName, isActive)
-        return {"players": filtered_players}
+        return {"team": filtered_players}
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -31,12 +31,14 @@ async def get_players(teamName: str = "", year: str = "", isActive: bool = False
         )
 
 
-@app.get("/players/stats/{first_name}/{last_name}")
-def get_player_stats(first_name: str = "", last_name: str = ""):
+# localhost:8000/stats?lastName=james&firstName=lebron
+@app.get("/stats")
+def get_player_stats(firstName: str = "", lastName: str = ""):
     try:
         stats_response = requests.get(url_const['PLAYER_STATS'] %
-                                      (last_name, first_name)).json()
-        player_stats = ApiFunctions.filter_player_stats(stats_response)
+                                      (lastName, firstName)).json()
+        player_stats = ApiFunctions.filter_player_stats(
+            stats_response)
         return {"stats": player_stats}
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
