@@ -10,7 +10,8 @@
     - `teamName`
     - `year`
     - `isActive`
-  - Response: [ {
+  - Response:
+    {
     "team": [
     {
     "firstName": "Jordan",
@@ -22,7 +23,6 @@
     "isActive": true,
     "img": "https://nba-players.herokuapp.com/players/Bell/Jordan"
     }, ... ]}
-    ]
 
 - `stats`
 
@@ -31,7 +31,8 @@
   - Parameters:
     - `lastName`
     - `firstName`
-  - Response: [ {
+  - Response:
+    {
     "stats": {
     "games_played": "46",
     "minutes_per_game": "36:54",
@@ -39,4 +40,3 @@
     "player_efficiency_rating": "1.7"
     }
     }
-    ]
