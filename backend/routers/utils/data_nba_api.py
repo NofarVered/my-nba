@@ -4,8 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import uvicorn
 import requests
-from .utils.data_nba_api_functions import *
-from .utils.url import *
+from .data_nba_api_functions import *
+from .url import *
 
 router = APIRouter()
 
