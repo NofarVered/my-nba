@@ -60,7 +60,7 @@ async def add_to_dream_team(request: Request, response: Response):
     player = Player(**req)
     dreamTeam.add_player(player)
     response.status_code = status.HTTP_201_CREATED
-    return {"player added": player}
+    return {"new team": dreamTeam.get_dream_team()}
 
 
 @app.delete("/dream")
@@ -69,7 +69,7 @@ async def delete_dream_team(request: Request, response: Response):
     dreamTeam.remove_player(
         req["personId"])
     response.status_code = status.HTTP_204_NO_CONTENT
-    return {"player removed": dreamTeam.get_dream_team()
+    return {"new team": dreamTeam.get_dream_team()
             }
 
 
