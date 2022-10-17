@@ -7,7 +7,7 @@ The website shows NBA basketball players by year and team upon user's requests. 
 
 ## Technologies
 
-bootstrap@5.2.2, Type Script and Python (fastapi)
+bootstrap@5.2.2, Type Script (handelbars) and Python (fastapi)
 
 ## Functionalities
 
