@@ -4,6 +4,6 @@
 
 ## Technologies
 
-## Functionality
+## Functionalities
 
 ## Screenshots
