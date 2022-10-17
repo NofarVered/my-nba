@@ -5,7 +5,7 @@ import uvicorn
 from fastapi import HTTPException, status
 import requests
 from utils.url import url_const
-from utils.api_functions import ApiFunctions
+from utils.api_services import ApiFunctions
 from utils.data_schemes.dream_team import DreamTeam
 from utils.data_schemes.player import Player
 
