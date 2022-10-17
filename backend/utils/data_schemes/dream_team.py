@@ -17,4 +17,4 @@ class DreamTeam():
             filter(lambda player: player.personId != personId, self.team))
 
     def add_player(self, player: Player):
-        self.team.append(Player(player))
+        self.team.append(player)

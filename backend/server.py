@@ -60,23 +60,18 @@ async def add_to_dream_team(request: Request, response: Response):
     player = Player(**req)
     dreamTeam.add_player(player)
     response.status_code = status.HTTP_201_CREATED
-    return {"player": player}
+    return {"player added": player}
 
 
-# @app.delete("/dream")
-# def delete_dream_team(playerId: str, response: Response) -> None:
-#     playerToDelete = None
-#     for player in dreamTeam.players:
-#         if player.get('personId') == playerId:
-#             playerToDelete = player
-#             break
-#     if playerToDelete is None:
-#         raise HTTPException(
-#             status_code=500, detail="Player not found in dream-team!")
-#     indexToDelete = dreamTeam.players.index(player)
-#     dreamTeam.players.pop(indexToDelete)
-#     response.status_code = status.HTTP_204_NO_CONTENT
-#     return
+@app.delete("/dream")
+async def delete_dream_team(request: Request, response: Response):
+    req = await request.json()
+    dreamTeam.remove_player(
+        req["personId"])
+    response.status_code = status.HTTP_204_NO_CONTENT
+    return {"player removed": dreamTeam.get_dream_team()
+            }
+
 
 app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
 
