@@ -28,8 +28,8 @@
             placeholder="Enter a year"
         />
         <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-left: 20px; margin-right: 20px;">
-            <button id="search-btn" class="btn btn-primary me-md-2" type="button">Search</button>
-            <button id="dream-team-btn" class="btn btn-primary" type="button">My dream team</button>
+            <button id="search-btn" class="btn btn-primary me-md-2" type="button" onclick="controller.loadTeam()">Search</button>
+            <button id="dream-team-btn" class="btn btn-primary" type="button" onclick="controller.loadDreamTeam()">My dream team</button>
         </div>
     </div>
     <div class="form-check form-switch">
@@ -59,8 +59,8 @@
                     <li class="pos list-group-item">{{pos}}</li>
                     <li class="jersey list-group-item">{{jersey}}</li>
                 </ul>
-                <button type="button" class="add-player btn btn-secondary">Add to dream team</button>
-                <button type="button" class="stats-player btn btn-secondary">Statistics</button>
+                <button type="button" class="add-player btn btn-secondary" onclick="controller.addPlayer('{{personId}}')">Add to dream team</button>
+                <button type="button" class="stats-player btn btn-secondary" onclick="controller.loadStatistics('{{personId}}', '{{firstName}}', '{{lastName}}')">Statistics</button>
             </div>
         {{/each}}
     </script>
@@ -81,8 +81,8 @@
                     <li class="pos list-group-item">{{pos}}</li>
                     <li class="jersey list-group-item">{{jersey}}</li>
                 </ul>
-                <button type="button" class="remove-player btn btn-secondary">Remove from dream team</button>
-                <button type="button" class="stats-player btn btn-secondary">Statistics</button>
+                <button type="button" class="remove-player btn btn-secondary" onclick="controller.deletePlayer('{{personId}}')">Remove from dream team</button>
+                <button type="button" class="stats-player btn btn-secondary" onclick="controller.loadStatistics('{{personId}}', '{{firstName}}', '{{lastName}}')">Statistics</button>
             </div>
         {{/each}}
     </script>
@@ -95,6 +95,7 @@
             <li class="list-group-item">Free throw percentage: {{free_throw_percentage}}</li>
             <li class="list-group-item">Three point percentage: {{three_point_percentage}}</li>
         </ul>
+        <button type="button" class="close-stats-player btn btn-secondary" onclick="controller.closeStatistics(this)">Statistics</button>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>

@@ -19,7 +19,7 @@ def root():
     return {"message": "Server is running"}
 
 
-@app.get("/search")
+@app.get("/search", status_code=200)
 async def get_players(teamName: str = "", year: str = "", isActive: bool = False):
     try:
         players_response = requests.get(
@@ -34,7 +34,7 @@ async def get_players(teamName: str = "", year: str = "", isActive: bool = False
         )
 
 
-@app.get("/stats")
+@app.get("/stats", status_code=200)
 def get_player_stats(firstName: str = "", lastName: str = ""):
     try:
         stats_response = requests.get(url_const['PLAYER_STATS'] %
@@ -49,7 +49,7 @@ def get_player_stats(firstName: str = "", lastName: str = ""):
         )
 
 
-@app.get("/dream")
+@app.get("/dream", status_code=200)
 def get_dream_team():
     return dreamTeam
 
