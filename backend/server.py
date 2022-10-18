@@ -26,7 +26,7 @@ async def get_players(teamName: str = "", year: str = "", isActive: bool = False
             url_const['BY_YEAR_PLAYERS'] % (year)).json()["league"]["standard"]
         filtered_players = ApiFunctions.filter_by_team(
             players_response, teamName, isActive)
-        return {"team": filtered_players}
+        return filtered_players
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -41,7 +41,7 @@ def get_player_stats(firstName: str = "", lastName: str = ""):
                                       (lastName, firstName)).json()
         player_stats = ApiFunctions.filter_player_stats(
             stats_response)
-        return {"stats": player_stats}
+        return player_stats
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -60,7 +60,7 @@ async def add_to_dream_team(request: Request, response: Response):
     player = Player(**req)
     dreamTeam.add_player(player)
     response.status_code = status.HTTP_201_CREATED
-    return {"new team": dreamTeam.get_dream_team()}
+    return dreamTeam.get_dream_team()
 
 
 @app.delete("/dream")
@@ -69,8 +69,7 @@ async def delete_dream_team(request: Request, response: Response):
     dreamTeam.remove_player(
         req["personId"])
     response.status_code = status.HTTP_204_NO_CONTENT
-    return {"new team": dreamTeam.get_dream_team()
-            }
+    return dreamTeam.get_dream_team()
 
 
 app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
