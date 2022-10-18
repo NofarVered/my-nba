@@ -1,10 +1,10 @@
-class Data{
+class DataModel{
     static currentTeam:Team
     static dreamTeam:Team
 
     public static async getTeam(teamName: string, year: string, isActive:boolean):Promise<Team>{
-        Data.currentTeam =  await $.get(`/search?teamName=${teamName}&year=${year}&isActive=${isActive}`)
-        return Data.currentTeam
+        DataModel.currentTeam =  await $.get(`/search?teamName=${teamName}&year=${year}&isActive=${isActive}`)
+        return DataModel.currentTeam
     }
 
     public static async getStats(
@@ -15,8 +15,8 @@ class Data{
     }
 
     public static async getDreamTeam() :Promise<Team>{
-        Data.dreamTeam = await $.get(`/dream`)
-        return Data.dreamTeam
+        DataModel.dreamTeam = await $.get(`/dream`)
+        return DataModel.dreamTeam
     }
 
     public static removeDreamTeam(personId: string) :void{
@@ -27,8 +27,8 @@ class Data{
      
     }
 
-    public static add_dream_team(personId: string) :void{
-        for(let player of Data.currentTeam.players){
+    public static addDreamTeam(personId: string) :void{
+        for(let player of DataModel.currentTeam.players){
             if(player.personId === personId){
                 $.post(`/dream`,JSON.stringify(player))
             }

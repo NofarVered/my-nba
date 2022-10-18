@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 
-class Render {
+class renderModel {
     public static RenderPlayerContainer(data:Team) {
         $(`#players-container`).empty();
         const userhtml = $(`#players-container`).html();
